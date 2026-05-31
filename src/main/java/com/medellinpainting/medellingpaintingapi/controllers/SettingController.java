@@ -41,6 +41,17 @@ public class SettingController {
         return ResponseEntity.ok(lista);
     }
 
+    @GetMapping("/analytics")
+    public ResponseEntity<List<SettingDTO>> listarAnalytics() {
+        ModelMapper m = new ModelMapper();
+        List<SettingDTO> lista = sS.list()
+                .stream()
+                .filter(s -> s.getKey() != null && s.getKey().startsWith("analytics."))
+                .map(s -> m.map(s, SettingDTO.class))
+                .collect(Collectors.toList());
+        return ResponseEntity.ok(lista);
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<?> buscarPorId(@PathVariable Long id) {
         ModelMapper m = new ModelMapper();

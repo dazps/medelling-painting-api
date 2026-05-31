@@ -73,7 +73,7 @@ public class WebSecurityConfig {
             .authorizeHttpRequests(req -> req
                 .requestMatchers("/login", "/refresh", "/api/message/nuevo").permitAll()
                 .requestMatchers(HttpMethod.GET, "/api/project/publicados", "/api/project/categoria",
-                        "/api/project/*", "/api/setting/social").permitAll()
+                        "/api/project/*", "/api/setting/social", "/api/setting/analytics").permitAll()
                 .anyRequest().authenticated()
             )
             .exceptionHandling(e -> e.authenticationEntryPoint(jwtAuthenticationEntryPoint))
